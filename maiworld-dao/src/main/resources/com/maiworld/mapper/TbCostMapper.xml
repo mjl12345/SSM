@@ -1,13 +1,38 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="com.maiworld.mapper.TbCostMapper" >
-  <resultMap id="BaseResultMap" type="com.maiworld.pojo.TbCost" >
+ <resultMap id="BaseResultMap" type="com.maiworld.pojo.TbCost" >
     <id column="id" property="id" jdbcType="BIGINT" />
     <result column="sid" property="sid" jdbcType="BIGINT" />
     <result column="cost" property="cost" jdbcType="DOUBLE" />
     <result column="created" property="created" jdbcType="TIMESTAMP" />
     <result column="status" property="status" jdbcType="VARCHAR" />
   </resultMap>
+  
+    <!-- <resultMap type="com.maiworld.pojo.TbCost" id="BaseResultMap">
+		一对一用association标签
+		<id column="id" property="id" jdbcType="BIGINT" />
+	    <result column="sid" property="sid" jdbcType="BIGINT" />
+	    <result column="cost" property="cost" jdbcType="DOUBLE" />
+	    <result column="created" property="created" jdbcType="TIMESTAMP" />
+	    <result column="status" property="status" jdbcType="VARCHAR" />
+		这种映射方式由于是执行一条sql语句findStudent，无法懒加载（也就是按需加载）
+		<association property="student" javaType="com.maiworld.pojo.TbStudent">
+			<id column="sid" property="sid" jdbcType="BIGINT" />
+		    <result column="name" property="name" jdbcType="VARCHAR" />
+		    <result column="sex" property="sex" jdbcType="VARCHAR" />
+		    <result column="card_id" property="cardId" jdbcType="VARCHAR" />
+		    <result column="is_vip" property="isVip" jdbcType="VARCHAR" />
+		    <result column="nick_name" property="nickName" jdbcType="VARCHAR" />
+		    <result column="head_pic" property="headPic" jdbcType="VARCHAR" />
+		    <result column="phone" property="phone" jdbcType="VARCHAR" />
+		    <result column="points" property="points" jdbcType="INTEGER" />
+		    <result column="study_status" property="studyStatus" jdbcType="VARCHAR" />
+		    <result column="status" property="status" jdbcType="VARCHAR" />
+		    <result column="created" property="created" jdbcType="TIMESTAMP" />
+		</association>
+	</resultMap> -->
+
   <sql id="Example_Where_Clause" >
     <where >
       <foreach collection="oredCriteria" item="criteria" separator="or" >
@@ -75,7 +100,7 @@
       distinct
     </if>
     <include refid="Base_Column_List" />
-    from tb_cost
+    from 
     <if test="_parameter != null" >
       <include refid="Example_Where_Clause" />
     </if>
@@ -208,4 +233,30 @@
       status = #{status,jdbcType=VARCHAR}
     where id = #{id,jdbcType=BIGINT}
   </update>
+  
+  <select id="studentList" resultType="java.util.Map" >
+  		<!-- select * from tb_cost LEFT JOIN tb_student on tb_cost.sid =tb_student.sid -->
+  		select * 
+		from tb_student 
+		LEFT JOIN tb_cost
+		on tb_cost.sid =tb_student.sid
+		WHERE tb_student.study_status>0
+		<!-- select  
+			a.id,
+			a.cost,
+			b.created,
+			b.sid,
+			b.name,
+			b.sex,
+			b.phone,
+			b.points,
+			b.study_status,
+			b.is_vip,
+			b.status AS status_stu
+		FROM tb_cost AS a, tb_student AS b
+		where a.sid=b.sid -->
+  </select>
+  
+  
+  
 </mapper>

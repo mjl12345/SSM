@@ -27,6 +27,8 @@ public class TbStudent implements Serializable {
     private String status;
 
     private Date created;
+    
+    private static final long serialVersionUID = 1L;
 
     public Long getSid() {
         return sid;

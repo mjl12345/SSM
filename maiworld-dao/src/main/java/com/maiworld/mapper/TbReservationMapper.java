@@ -3,6 +3,8 @@ package com.maiworld.mapper;
 import com.maiworld.pojo.TbReservation;
 import com.maiworld.pojo.TbReservationExample;
 import java.util.List;
+import java.util.Map;
+
 import org.apache.ibatis.annotations.Param;
 
 public interface TbReservationMapper {
@@ -27,4 +29,6 @@ public interface TbReservationMapper {
     int updateByPrimaryKeySelective(TbReservation record);
 
     int updateByPrimaryKey(TbReservation record);
+    
+    List<Map<String, Object>> selectList();
 }

@@ -1,1 +1,1 @@
-var app=angular.module('maiworld', ['maiworld']);
+var app=angular.module('maiworld', ['pagination']);

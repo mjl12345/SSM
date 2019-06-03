@@ -223,4 +223,15 @@
       status = #{status,jdbcType=VARCHAR}
     where id = #{id,jdbcType=BIGINT}
   </update>
+  
+  <select id="selectList" resultType="java.util.Map">
+  		 select 
+		  *
+		from tb_coach b,tb_student c
+		left join tb_reservation a
+		on a.sid=c.sid
+  
+  </select>
+  
+  
 </mapper>

@@ -13,8 +13,48 @@ public class TbCost implements Serializable{
     private Date created;
 
     private String status;
+    
+    private TbStudent student;
+ 
+    
+	public TbCost() {
+		super();
+	}
 
-    public Long getId() {
+
+	@Override
+	public String toString() {
+		return "TbCost [id=" + id + ", sid=" + sid + ", cost=" + cost + ", created=" + created + ", status=" + status
+				+ ", student=" + student + "]";
+	}
+
+
+
+	public TbCost(Long id, Long sid, Double cost, Date created, String status, TbStudent student) {
+		super();
+		this.id = id;
+		this.sid = sid;
+		this.cost = cost;
+		this.created = created;
+		this.status = status;
+		this.student = student;
+	}
+
+
+
+	public TbStudent getStudent() {
+		return student;
+	}
+
+
+
+	public void setStudents(TbStudent student) {
+		this.student = student;
+	}
+
+
+
+	public Long getId() {
         return id;
     }
 

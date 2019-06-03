@@ -29,6 +29,27 @@ app.controller('baseController' ,function($scope){
 		}
 	}
 	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
 	$scope.jsonToString=function(jsonString,key){
 		
 		var json= JSON.parse(jsonString);

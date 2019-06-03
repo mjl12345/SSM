@@ -3,6 +3,8 @@ package com.maiworld.mapper;
 import com.maiworld.pojo.TbCost;
 import com.maiworld.pojo.TbCostExample;
 import java.util.List;
+import java.util.Map;
+
 import org.apache.ibatis.annotations.Param;
 
 public interface TbCostMapper {
@@ -27,4 +29,9 @@ public interface TbCostMapper {
     int updateByPrimaryKeySelective(TbCost record);
 
     int updateByPrimaryKey(TbCost record);
+    
+    //List<TbCost> studentList();
+
+    
+    List<Map<String, Object>> studentList();
 }
