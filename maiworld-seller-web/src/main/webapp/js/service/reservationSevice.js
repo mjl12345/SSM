@@ -25,6 +25,10 @@
     				}
     				
     				this.search=function(page, rows, searchEntity){
-    					return $http.post('../reservation/search.do?page='+page+'&rows='+rows, searchEntity);
-    				}    					
+    					return $http.post('../reservation/selectList.do?page='+page+'&rows='+rows, searchEntity);
+    				}
+    				
+    				this.seletList=function(){
+    					return $http.get('../reservation/selectList.do')
+    				}
     			});

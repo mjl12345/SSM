@@ -4,6 +4,7 @@ import java.util.List;
 
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.alibaba.dubbo.config.annotation.Reference;
@@ -34,8 +35,7 @@ public class ReservationController {
 		return reservationService.findPage(page, rews);
 		
 	}
-	
-	
+
 	@RequestMapping("/add")
 	public Result add(@RequestBody TbReservation reservation){
 		try{
@@ -79,10 +79,11 @@ public class ReservationController {
 	public PageResult findPage(@RequestBody TbReservation reservation , int page, int rows){
 		return reservationService.findPage(reservation, page, rows);
 	}
-	
+	//
 	@RequestMapping("/selectList")
-	public PageResult selectList(int page , int rows){
-		PageResult selectList = reservationService.selectList(page, rows);		
+	public PageResult selectList(int page, int rows){
+		PageResult selectList = reservationService.selectList(page, rows);
+		System.out.println("++++++++++++++++++"+selectList);
 		return selectList;
 	}
 

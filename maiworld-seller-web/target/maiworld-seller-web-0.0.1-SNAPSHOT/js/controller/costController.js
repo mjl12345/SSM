@@ -65,8 +65,7 @@ app.controller('costController',function($scope,$http ,$controller, costService)
     					object=costService.update($scope.entity);
     				}else{
     					object=costService.add($scope.entity);
-    				}
-    				
+    				}    				
     				object.success(
     					function(response){
     						if(response.success){
@@ -99,18 +98,13 @@ app.controller('costController',function($scope,$http ,$controller, costService)
     					}		
     				);
     			}
-    			
-    			
-    			
-    			
-    			
-    			
+			
     			$scope.searchEntity={};
     			//条件查询
     			$scope.search=function(page, rows){
     				costService.search(page,rows,$scope.searchEntity).success(
     					function(response){
-    						console.log(response);
+    						//console.log(response);
     						$scope.list=response.rows;	//显示当前页数据
 							$scope.paginationConf.totalItems=response.total;	//更新总记录数
     					}		

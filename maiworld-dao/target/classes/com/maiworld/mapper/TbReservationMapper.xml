@@ -224,12 +224,11 @@
     where id = #{id,jdbcType=BIGINT}
   </update>
   
-  <select id="selectList" resultType="java.util.Map">
-  		 select 
-		  *
-		from tb_coach b,tb_student c
-		left join tb_reservation a
-		on a.sid=c.sid
+  <select id="selectList" resultType="java.util.Map" parameterType="com.maiworld.pojo.TbReservation">
+  		SELECT *
+				FROM tb_reservation a
+				LEFT JOIN (tb_coach b, tb_student c)
+				ON a.cid=b.cid AND a.sid=c.sid
   
   </select>
   

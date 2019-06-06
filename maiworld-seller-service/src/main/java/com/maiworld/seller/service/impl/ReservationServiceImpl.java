@@ -80,8 +80,9 @@ public class ReservationServiceImpl implements ReservationService {
 	@Override
 	public PageResult selectList(int pageNum, int pageSize) {
 		PageHelper.startPage(pageNum, pageSize);
-			List<Map<String, Object>> selectList = tbReservationMapper.selectList();			
-			Page<Map<String, Object>> page = (Page<Map<String, Object>>) selectList;
+			List<Map<String, Object>> selectList = tbReservationMapper.selectList();
+			//System.out.print("=============="+selectList);
+			Page<Map<String, Object>> page = (Page<Map<String, Object>>) selectList;			
 		return new PageResult(page.getTotal(), page.getResult());
 	}
 

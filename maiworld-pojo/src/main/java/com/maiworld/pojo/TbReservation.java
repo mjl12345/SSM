@@ -1,8 +1,10 @@
 package com.maiworld.pojo;
 
 import java.io.Serializable;
+import java.util.List;
+import java.util.Map;
 
-public class TbReservation implements Serializable{
+public class TbReservation  implements Serializable{
     private Long id;
 
     private Long sid;
@@ -14,6 +16,8 @@ public class TbReservation implements Serializable{
     private String checkStatus;
 
     private String status;
+    
+   // private List<Map<String, Object>> reseervation ;
 
     public Long getId() {
         return id;
