@@ -17,9 +17,18 @@ public class TbReservation  implements Serializable{
 
     private String status;
     
-   // private List<Map<String, Object>> reseervation ;
+    private List<Map<String, Object>> reseervation ;
+    
 
-    public Long getId() {
+    public List<Map<String, Object>> getReseervation() {
+		return reseervation;
+	}
+
+	public void setReseervation(List<Map<String, Object>> reseervation) {
+		this.reseervation = reseervation;
+	}
+
+	public Long getId() {
         return id;
     }
 

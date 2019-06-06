@@ -64,3 +64,4 @@
 0:0:0:0:0:0:0:1 - - [06/Jun/2019:17:26:17 +0800] "POST /student/search.do?page=1&rows=10 HTTP/1.1" 200 1078 http-bio-8081-exec-10 85
 0:0:0:0:0:0:0:1 - - [06/Jun/2019:17:26:18 +0800] "POST /cost/studentList.do?page=1&rows=10 HTTP/1.1" 200 754 http-bio-8081-exec-10 100
 0:0:0:0:0:0:0:1 - - [06/Jun/2019:17:26:18 +0800] "POST /cost/studentList.do?page=1&rows=10 HTTP/1.1" 200 754 http-bio-8081-exec-10 20
+0:0:0:0:0:0:0:1 - - [06/Jun/2019:19:25:28 +0800] "GET /admin/index.html HTTP/1.1" 304 - http-bio-8081-exec-1 203
