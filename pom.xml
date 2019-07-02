@@ -281,6 +281,5 @@
 		<module>maiworld-seller-web</module>
 		<module>maiworld-content-interface</module>
 		<module>maiworld-content-service</module>
-		<module>maiworld-coach-web</module>
 	</modules>
 </project>

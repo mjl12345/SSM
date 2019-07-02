@@ -29,17 +29,6 @@ app.controller('baseController' ,function($scope){
 		}
 	}
 	
-	$scope.selectsIds=[];		//我勾选的ID集合
-	//用户勾选复选框
-	$scope.updateSelection=function($event,sid){
-		if($event.target.checked){
-			$scope.selectsIds.push(sid);  //push向集合中添加元素    				   					
-		 }else{
-			var index = $scope.selectsIds.indexOf(sid);
-			$scope.selectsIds.splice(index, 1);
-		}
-	}
-	
 	$scope.jsonToString=function(jsonString,key){
 		
 		var json= JSON.parse(jsonString);

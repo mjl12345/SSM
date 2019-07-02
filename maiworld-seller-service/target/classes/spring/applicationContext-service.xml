@@ -11,7 +11,5 @@
     <dubbo:protocol name="dubbo" port="20881"></dubbo:protocol>
 	<dubbo:application name="maiworld-seller-service"/>  
     <dubbo:registry address="zookeeper://120.78.137.227:2181"/>
-    <dubbo:annotation package="com.maiworld.seller.service.impl" />  
-   
-   
+    <dubbo:annotation package="com.maiworld.seller.service.impl" />     
 </beans>
