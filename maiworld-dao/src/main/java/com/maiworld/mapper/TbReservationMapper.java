@@ -30,5 +30,7 @@ public interface TbReservationMapper {
 
     int updateByPrimaryKey(TbReservation record);
     
-    List<Map<String, Object>> selectList();
+    List<Map<String, Object>> reservationList(TbReservationExample example);
+    
+    List<Map<String, Object>> reservationList();
 }

@@ -8,6 +8,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.alibaba.dubbo.config.annotation.Reference;
+import com.alibaba.dubbo.container.page.Page;
 import com.maiworld.pojo.TbReservation;
 import com.maiworld.seller.service.ReservationService;
 
@@ -79,12 +80,16 @@ public class ReservationController {
 	public PageResult findPage(@RequestBody TbReservation reservation , int page, int rows){
 		return reservationService.findPage(reservation, page, rows);
 	}
-	//
-	@RequestMapping("/selectList")
-	public PageResult selectList(int page, int rows){
-		PageResult selectList = reservationService.selectList(page, rows);
-		System.out.println("++++++++++++++++++"+selectList);
-		return selectList;
+	
+	/*@RequestMapping("/reservationList")
+	public PageResult reservationList(int page, int rows){
+		PageResult reservationList = reservationService.reservationList(page, rows);
+		return reservationList;
+	}*/
+	
+	@RequestMapping("/reservationList")
+	public PageResult reservationList(@RequestBody TbReservation reservation, int page, int rows){
+		return reservationService.reservationList(reservation, page, rows);
 	}
 
 }

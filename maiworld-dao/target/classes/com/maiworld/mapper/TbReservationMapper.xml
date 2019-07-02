@@ -224,13 +224,29 @@
     where id = #{id,jdbcType=BIGINT}
   </update>
   
-  <select id="selectList" resultType="java.util.Map" parameterType="com.maiworld.pojo.TbReservation">
-  		SELECT *
-				FROM tb_reservation a
-				LEFT JOIN (tb_coach b, tb_student c)
-				ON a.cid=b.cid AND a.sid=c.sid
-  
+  <select id="reservationList" resultType="com.maiworld.pojo.TbReservation">
+  		SELECT
+				a.id,
+				a.sid,
+				a.cid,
+				a.rele_id,
+				a.check_status,
+				b.`name`AS sname,
+				b.sex AS sex1,
+				b.phone,
+				b.`status` AS status1,
+				b.card_id,
+				b.is_vip,
+				c.`name` AS cname,
+				c.plate_number,
+				c.phone As phone2,
+				c.status As status2,
+				c.indoor,
+				d.period,
+				d.`subject`,
+				d.vehicle_type	
+		FROM tb_reservation a
+			LEFT JOIN (tb_student b, tb_coach c, tb_release_news d)
+				ON a.sid=b.sid AND a.cid=c.cid AND a.rele_id=d.id
   </select>
-  
-  
 </mapper>

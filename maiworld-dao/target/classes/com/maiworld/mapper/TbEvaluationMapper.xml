@@ -270,4 +270,28 @@
       created = #{created,jdbcType=TIMESTAMP}
     where id = #{id,jdbcType=BIGINT}
   </update>
+  
+  <select id="evaluationList" resultType="com.maiworld.pojo.TbEvaluation">
+  
+  		SELECT
+			 a.id,
+			 a.sid,
+			 a.cid,
+			 a.star,
+			 a.content,
+			 a.commentee,
+			 b.`name`AS sname,
+			 b.`status`AS status1,
+			 c.`name` AS cname,
+			 d.title,
+			 d.browse_num,
+			 d.comments_num,
+			 d.like_num,
+			 d.classification
+		 FROM tb_evaluation a
+			LEFT JOIN (tb_student b, tb_coach c, tb_news d)
+				ON a.sid=b.sid AND a.cid=c.cid AND a.nid=d.id
+  
+  </select>
+  
 </mapper>

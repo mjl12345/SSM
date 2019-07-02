@@ -27,4 +27,6 @@ public interface TbStudentMapper {
     int updateByPrimaryKeySelective(TbStudent record);
 
     int updateByPrimaryKey(TbStudent record);
+    
+    
 }

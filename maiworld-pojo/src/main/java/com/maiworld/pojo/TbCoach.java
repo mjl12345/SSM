@@ -3,7 +3,7 @@ package com.maiworld.pojo;
 import java.io.Serializable;
 import java.util.Date;
 
-public class TbCoach  implements Serializable{
+public class TbCoach implements Serializable{
     private Long cid;
 
     private String name;
@@ -33,6 +33,8 @@ public class TbCoach  implements Serializable{
     private String status;
 
     private Date created;
+
+    private String openid;
 
     public Long getCid() {
         return cid;
@@ -152,5 +154,13 @@ public class TbCoach  implements Serializable{
 
     public void setCreated(Date created) {
         this.created = created;
+    }
+
+    public String getOpenid() {
+        return openid;
+    }
+
+    public void setOpenid(String openid) {
+        this.openid = openid == null ? null : openid.trim();
     }
 }

@@ -77,12 +77,34 @@ public class ReservationServiceImpl implements ReservationService {
 		return new  PageResult( page.getTotal(), page.getResult());
 	}
 
-	@Override
-	public PageResult selectList(int pageNum, int pageSize) {
+	/*@Override
+	public PageResult reservationList(int pageNum, int pageSize) {
 		PageHelper.startPage(pageNum, pageSize);
-			List<Map<String, Object>> selectList = tbReservationMapper.selectList();
-			//System.out.print("=============="+selectList);
-			Page<Map<String, Object>> page = (Page<Map<String, Object>>) selectList;			
+			List<Map<String, Object>> reservationList = tbReservationMapper.reservationList();
+			//List<TbReservation> test =  tbReservationMapper.reservationList();
+			//System.out.print("------------"+reservationList);
+			//for (TbReservation tbReservation : test) {
+			//	System.out.println("————————"+tbReservation);
+			//}
+			
+			//System.out.print("==========="+test);
+			Page<Map<String, Object>> page = (Page<Map<String, Object>>) reservationList;			
+			return new PageResult(page.getTotal(), page.getResult());
+		//return null;
+	}*/
+
+	@Override
+	public PageResult reservationList(TbReservation reservation, int pageNum, int pageSize) {
+		PageHelper.startPage(pageNum, pageSize);
+		TbReservationExample example = new TbReservationExample();
+		Criteria create = example.createCriteria();
+		if(reservation!=null){
+			if(reservation.getSname()!=null && reservation.getSname().length()>0){
+				create.andSnameLike("%"+reservation.getSname()+"%");
+			}
+			
+		}
+		Page<Map<String, Object>> page = (Page<Map<String, Object>>) tbReservationMapper.reservationList(example);
 		return new PageResult(page.getTotal(), page.getResult());
 	}
 

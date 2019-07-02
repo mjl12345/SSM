@@ -1,6 +1,8 @@
 //控制层 
 app.controller('reservationController',function($scope,$http ,$controller, reservationService){
     			
+		//$controller('baseController', {$scope:$scope});
+	
     			$scope.findAll=function(){
     				reservationService.findAll().success(
     				function(response){
@@ -10,21 +12,6 @@ app.controller('reservationController',function($scope,$http ,$controller, reser
     			);
     		}
     			
-				
-    			$scope.paginationConf = {
-       		         currentPage: 1,		//当前页码
-       		         totalItems: 10,		//总录数
-       		         itemsPerPage: 10,		//当前记录数
-       		         perPageOptions: [10, 20, 30, 40, 50],
-       		         onChange: function(){    		        	
-       		        		$scope.reloadList();//重新加载
-       		     	 }
-       			}; 
-       			
-       			//刷新列表
-       			$scope.reloadList=function(){
-       				$scope.search($scope.paginationConf.currentPage, $scope.paginationConf.itemsPerPage);
-       			}
     			//分页
     			$scope.findPage=function(page, rows){
     				reservationService.findPage(page,rows).success(
@@ -34,6 +21,22 @@ app.controller('reservationController',function($scope,$http ,$controller, reser
     						}
     				);
     			}
+    			
+    			//分页控件配置 
+    			$scope.paginationConf = {
+    		         currentPage: 1,		//当前页码
+    		         totalItems: 10,		//总录数
+    		         itemsPerPage: 10,		//当前记录数
+    		         perPageOptions: [10, 20, 30, 40, 50],
+    		         onChange: function(){    		        	
+    		        		$scope.reloadList();//重新加载
+    		     	 }
+    			}; 
+    			
+    			/*//刷新列表
+    			$scope.reloadList=function(){
+    				$scope.search($scope.paginationConf.currentPage, $scope.paginationConf.itemsPerPage);
+    			}*/
     			
     			//增加
     			$scope.save=function(){
@@ -61,7 +64,7 @@ app.controller('reservationController',function($scope,$http ,$controller, reser
     						$scope.entity=response;
     					}		
     				);
-    			}
+    			}    			
     			
     			//删除
     			$scope.dele=function(){
@@ -75,7 +78,11 @@ app.controller('reservationController',function($scope,$http ,$controller, reser
     					}		
     				);
     			}
-			
+    			//刷新列表
+    			$scope.reloadList=function(){
+    				$scope.search($scope.paginationConf.currentPage, $scope.paginationConf.itemsPerPage);
+    			}
+    						
     			$scope.searchEntity={};
     			//条件查询
     			$scope.search=function(page, rows){
@@ -86,7 +93,5 @@ app.controller('reservationController',function($scope,$http ,$controller, reser
     					}		
     				);
     			}
-    			
-  			
-    			
+		
     	});

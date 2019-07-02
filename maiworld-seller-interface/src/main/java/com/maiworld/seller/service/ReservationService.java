@@ -23,6 +23,8 @@ public interface ReservationService {
 	
 	public PageResult findPage(TbReservation reservation , int pageNum, int pageSize);
 	
-	public PageResult selectList(int pageNum, int pageSize);
+	/*public PageResult reservationList(int pageNum, int pageSize);*/
+	
+	public PageResult reservationList(TbReservation reservation, int pageNum, int pageSize);
 	
 }

@@ -17,6 +17,7 @@
     <result column="authentication" property="authentication" jdbcType="VARCHAR" />
     <result column="status" property="status" jdbcType="VARCHAR" />
     <result column="created" property="created" jdbcType="TIMESTAMP" />
+    <result column="openid" property="openid" jdbcType="VARCHAR" />
   </resultMap>
   <sql id="Example_Where_Clause" >
     <where >
@@ -78,7 +79,7 @@
   </sql>
   <sql id="Base_Column_List" >
     cid, name, phone, sex, card_id, logo_pic, vehicle_type, plate_number, subject, indoor, 
-    nickname, head_pic, authentication, status, created
+    nickname, head_pic, authentication, status, created, openid
   </sql>
   <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.maiworld.pojo.TbCoachExample" >
     select
@@ -115,14 +116,14 @@
       sex, card_id, logo_pic, 
       vehicle_type, plate_number, subject, 
       indoor, nickname, head_pic, 
-      authentication, status, created
-      )
+      authentication, status, created, 
+      openid)
     values (#{cid,jdbcType=BIGINT}, #{name,jdbcType=VARCHAR}, #{phone,jdbcType=VARCHAR}, 
       #{sex,jdbcType=VARCHAR}, #{cardId,jdbcType=VARCHAR}, #{logoPic,jdbcType=VARCHAR}, 
       #{vehicleType,jdbcType=VARCHAR}, #{plateNumber,jdbcType=VARCHAR}, #{subject,jdbcType=VARCHAR}, 
       #{indoor,jdbcType=VARCHAR}, #{nickname,jdbcType=VARCHAR}, #{headPic,jdbcType=VARCHAR}, 
-      #{authentication,jdbcType=VARCHAR}, #{status,jdbcType=VARCHAR}, #{created,jdbcType=TIMESTAMP}
-      )
+      #{authentication,jdbcType=VARCHAR}, #{status,jdbcType=VARCHAR}, #{created,jdbcType=TIMESTAMP}, 
+      #{openid,jdbcType=VARCHAR})
   </insert>
   <insert id="insertSelective" parameterType="com.maiworld.pojo.TbCoach" >
     insert into tb_coach
@@ -172,6 +173,9 @@
       <if test="created != null" >
         created,
       </if>
+      <if test="openid != null" >
+        openid,
+      </if>
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides="," >
       <if test="cid != null" >
@@ -218,6 +222,9 @@
       </if>
       <if test="created != null" >
         #{created,jdbcType=TIMESTAMP},
+      </if>
+      <if test="openid != null" >
+        #{openid,jdbcType=VARCHAR},
       </if>
     </trim>
   </insert>
@@ -275,6 +282,9 @@
       <if test="record.created != null" >
         created = #{record.created,jdbcType=TIMESTAMP},
       </if>
+      <if test="record.openid != null" >
+        openid = #{record.openid,jdbcType=VARCHAR},
+      </if>
     </set>
     <if test="_parameter != null" >
       <include refid="Update_By_Example_Where_Clause" />
@@ -296,7 +306,8 @@
       head_pic = #{record.headPic,jdbcType=VARCHAR},
       authentication = #{record.authentication,jdbcType=VARCHAR},
       status = #{record.status,jdbcType=VARCHAR},
-      created = #{record.created,jdbcType=TIMESTAMP}
+      created = #{record.created,jdbcType=TIMESTAMP},
+      openid = #{record.openid,jdbcType=VARCHAR}
     <if test="_parameter != null" >
       <include refid="Update_By_Example_Where_Clause" />
     </if>
@@ -346,6 +357,9 @@
       <if test="created != null" >
         created = #{created,jdbcType=TIMESTAMP},
       </if>
+      <if test="openid != null" >
+        openid = #{openid,jdbcType=VARCHAR},
+      </if>
     </set>
     where cid = #{cid,jdbcType=BIGINT}
   </update>
@@ -364,7 +378,12 @@
       head_pic = #{headPic,jdbcType=VARCHAR},
       authentication = #{authentication,jdbcType=VARCHAR},
       status = #{status,jdbcType=VARCHAR},
-      created = #{created,jdbcType=TIMESTAMP}
+      created = #{created,jdbcType=TIMESTAMP},
+      openid = #{openid,jdbcType=VARCHAR}
     where cid = #{cid,jdbcType=BIGINT}
   </update>
+   <select id="selectByOpenid" parameterType="java.lang.String" resultType="com.maiworld.pojo.TbCoach" >
+    select * from tb_coach where openid=#{id}
+  </select>
+  
 </mapper>

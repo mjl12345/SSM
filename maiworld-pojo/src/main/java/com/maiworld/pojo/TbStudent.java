@@ -3,7 +3,7 @@ package com.maiworld.pojo;
 import java.io.Serializable;
 import java.util.Date;
 
-public class TbStudent implements Serializable {
+public class TbStudent implements Serializable{
     private Long sid;
 
     private String name;
@@ -27,8 +27,8 @@ public class TbStudent implements Serializable {
     private String status;
 
     private Date created;
-    
-    private static final long serialVersionUID = 1L;
+
+    private String openid;
 
     public Long getSid() {
         return sid;
@@ -124,5 +124,13 @@ public class TbStudent implements Serializable {
 
     public void setCreated(Date created) {
         this.created = created;
+    }
+
+    public String getOpenid() {
+        return openid;
+    }
+
+    public void setOpenid(String openid) {
+        this.openid = openid == null ? null : openid.trim();
     }
 }

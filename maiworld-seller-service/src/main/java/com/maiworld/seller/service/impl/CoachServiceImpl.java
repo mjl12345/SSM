@@ -8,10 +8,15 @@ import org.springframework.beans.factory.annotation.Autowired;
 import com.alibaba.dubbo.config.annotation.Service;
 import com.github.pagehelper.Page;
 import com.github.pagehelper.PageHelper;
+import com.maiworld.api.dto.CoachDTO;
+import com.maiworld.api.vo.ResultVO;
 import com.maiworld.mapper.TbCoachMapper;
+import com.maiworld.mapper.TbEvaluationMapper;
 import com.maiworld.pojo.TbCoach;
 import com.maiworld.pojo.TbCoachExample;
 import com.maiworld.pojo.TbCoachExample.Criteria;
+import com.maiworld.pojo.TbEvaluation;
+import com.maiworld.pojo.TbEvaluationExample;
 import com.maiworld.seller.service.CoachService;
 
 import entity.PageResult;
@@ -21,6 +26,9 @@ public class CoachServiceImpl implements CoachService {
 
 	@Autowired
 	private TbCoachMapper tbCoachMapper;
+	
+	@Autowired
+	private TbEvaluationMapper tbEvaluationMapper;
 	
 	@Override
 	public List<TbCoach> findAll() {
@@ -90,6 +98,37 @@ public class CoachServiceImpl implements CoachService {
 		TbCoach coach = tbCoachMapper.selectByPrimaryKey(cid);
 		coach.setAuthentication(authentication);
 		tbCoachMapper.updateByPrimaryKey(coach);
+		
+	}
+
+	@Override
+	public ResultVO<CoachDTO> findOne(String openid) {
+		ResultVO<CoachDTO> result=new ResultVO<>();
+		CoachDTO coachDto=new CoachDTO();
+		if(openid==null && openid==""){
+		    result.setCode(0);
+		    result.setMsg("没有此教练的信息");
+		    result.setData(null);
+		    return result;
+		}
+		  TbCoach selectByOpenid = tbCoachMapper.selectByOpenid(openid);
+		  if(selectByOpenid==null){
+			    result.setCode(0);
+			    result.setMsg("没有此教练的信息");
+			    result.setData(null);
+			    return result;
+		  }
+		  coachDto.setCoach(selectByOpenid);
+		  TbEvaluationExample example = new TbEvaluationExample();
+			com.maiworld.pojo.TbEvaluationExample.Criteria criteria = example.createCriteria();
+			criteria.equals(selectByOpenid.getCid());
+			List<TbEvaluation> selectByExample = tbEvaluationMapper.selectByExample(example);
+			
+			coachDto.setComment(selectByExample);
+			result.setCode(0);
+		    result.setMsg("没有此教练的信息");
+		    result.setData(coachDto);
+		    return result;
 		
 	}
 

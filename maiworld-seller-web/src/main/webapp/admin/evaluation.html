@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <!-- 页面meta -->
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>教练评价管理</title>
+    <!-- Tell the browser to be responsive to screen width -->
+    <meta content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no" name="viewport">
+    <link rel="stylesheet" href="../plugins/bootstrap/css/bootstrap.min.css">
+    <link rel="stylesheet" href="../plugins/adminLTE/css/AdminLTE.css">
+    <link rel="stylesheet" href="../plugins/adminLTE/css/skins/_all-skins.min.css">
+    <link rel="stylesheet" href="../css/style.css">
+	<script src="../plugins/jQuery/jquery-2.2.3.min.js"></script>
+    <script src="../plugins/bootstrap/js/bootstrap.min.js"></script>
+    
+    <script type="text/javascript" src="../plugins/angularjs/angular.min.js"></script>
+    
+	
+	<!--分页组件  -->
+		<script type="text/javascript" src="../plugins/angularjs/pagination.js"></script>
+		<link rel="stylesheet" href="../plugins/angularjs/pagination.css">
+	<!--分页结束  -->
+    
+    <script type="text/javascript" src="../js/base_pagination.js"></script>    
+    <script type="text/javascript" src="../js/service/evaluationService.js"></script>
+    <script type="text/javascript" src="../js/controller/baseController.js"></script>        
+    <script type="text/javascript" src="../js/controller/evaluationController.js"></script>
+    
+    
+</head>
+<body class="hold-transition skin-red sidebar-mini" 
+ ng-app="maiworld" ng-controller="evaluationController" ng-init="searchEntity={commentee:'0'}">
+  <!-- .box-body -->
+                <div class="box box-primary">
+                    <div class="box-header with-border">
+                        <h3 class="box-title">教练评价信息</h3>
+                    </div>
+
+                    <div class="box-body">
+
+                        <!-- 数据表格 -->
+                        <div class="table-box">
+
+                            <!--工具栏-->
+                            
+                            <div class="box-tools pull-right">
+                                <div class="has-feedback">
+									<!-- 真实姓名：<input ng-model="searchEntity.name" >									
+									<button class="btn btn-default"  ng-click="reloadList()">查询</button>   -->                                  
+                                </div>
+                            </div>
+                            <!--工具栏/-->
+
+			                  <!--数据列表-->
+			                  <table id="dataList" class="table table-bordered table-striped table-hover dataTable">
+			                      <thead>
+			                          <tr>
+			                              <th class="" style="padding-right:0px">
+			                                  <input id="selall" type="checkbox" class="icheckbox_square-blue">
+			                              </th> 
+										  <th class="sorting_asc">ID</th>
+									      <th class="sorting">学员姓名</th>						      									      
+									      <th class="sorting">所属校区</th>
+									      <th class="soring">教练姓名</th>
+									      <th class="soring">评论星级</th>									      
+										  <th class="sorting">评论内容</th>
+									       													                     
+			                          </tr>
+			                      </thead>
+			                      <tbody>
+			                          <tr ng-repeat="entity in list track by $index">			                          	
+			                              <td><input  type="checkbox"></td>			                              
+				                          <td>{{entity.id}}</td>
+									      <td>{{entity.sname}}</td>									     								      									      									      							     									      										       								      
+									      <td>
+									      	<span ng-show="entity.status1 == '1'">一分校</span>	
+		                                  	<span ng-show="entity.status1 == '2'">二分校</span>	
+		                                  	<span ng-show="entity.status1 == '3'">三分校</span>	
+		                                  	<span ng-show="entity.status1 == '4'">四分校</span>	
+		                                  	<span ng-show="entity.status1 == '5'">五分校</span>	
+		                                  	<span ng-show="entity.status1 == '6'">六分校</span>	
+		                                  	<span ng-show="entity.status1 == '7'">七分校</span>	
+		                                  	<span ng-show="entity.status1 == '8'">八分校</span>	
+		                                  	<span ng-show="entity.status1 == '9'">九分校</span>	
+		                                  	<span ng-show="entity.status1 == '10'">十分校</span>	
+		                                  	<span ng-show="entity.status1 == '11'">十一分校</span>	
+		                                  	<span ng-show="entity.status1 == '12'">十二分校</span>	
+		                                  	<span ng-show="entity.status1 == '13'">十三分校</span>	
+		                                  	<span ng-show="entity.status1 == '14'">十四分校</span>
+		                                  	<span ng-show="entity.status1 == '15'">十五分校</span>
+		                                  	<span ng-show="entity.status1 == '16'">十六分校</span>
+		                                  	<span ng-show="entity.status1 == '17'">十七分校</span>
+		                                  	<span ng-show="entity.status1 == '18'">十八分校</span>
+		                                  	<span ng-show="entity.status1 == '19'">十九分校</span>
+		                                  	<span ng-show="entity.status1 == '20'">二十分校</span>
+		                                  	<span ng-show="entity.status1 == '21'">二十一分校</span>
+		                                  	<span ng-show="entity.status1 == '22'">二十二分校</span>
+		                                  	<span ng-show="entity.status1 == '23'">二十三分校</span>
+		                                  	<span ng-show="entity.status1 == '24'">二十四分校</span>
+		                                  	<span ng-show="entity.status1 == '25'">二十五分校</span>
+		                                  	<span ng-show="entity.status1 == '26'">二十六分校</span>
+		                                  	<span ng-show="entity.status1 == '27'">二十七分校</span>
+		                                  	<span ng-show="entity.status1 == '28'">二十八分校</span>
+		                                  	<span ng-show="entity.status1 == '29'">二十九分校</span>
+		                                  	<span ng-show="entity.status1 == '30'">三十分校</span>	
+		                                  	</td>
+									      <td>{{entity.cname}}</td>
+									      <td>{{entity.star}}</td>
+									      <td>{{entity.content}}</td>									     						    								      									    		                                  		                              
+			                          </tr>
+									  
+			                      </tbody>
+			                  </table>
+			                  <!--数据列表/-->                        
+			 					 <!--分页  -->
+							 	<tm-pagination conf="paginationConf"></tm-pagination>
+
+                        </div>
+                        <!-- 数据表格 /-->     
+                     </div>                         	          					                                   
+</body>
+
+</html>

@@ -27,4 +27,6 @@ public interface TbEvaluationMapper {
     int updateByPrimaryKeySelective(TbEvaluation record);
 
     int updateByPrimaryKey(TbEvaluation record);
+    
+    List<TbEvaluation> evaluationList();
 }

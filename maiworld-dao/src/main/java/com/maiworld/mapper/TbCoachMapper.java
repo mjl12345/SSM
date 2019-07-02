@@ -27,4 +27,6 @@ public interface TbCoachMapper {
     int updateByPrimaryKeySelective(TbCoach record);
 
     int updateByPrimaryKey(TbCoach record);
+    
+    TbCoach selectByOpenid(String id);
 }

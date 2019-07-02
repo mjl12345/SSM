@@ -83,9 +83,8 @@ public class CostServiceImpl implements CostService {
 		 PageHelper.startPage(pageNum, pageSize);
  
 		 List<Map<String, Object>> studentList = tbCostMapper.studentList();
-		 //System.out.print("=====================================================:"+studentList);
-		
 		 
+		 //System.out.print("=====================================================:"+studentList);
 		// List<TbCost> studentList = tbCostMapper.studentList();
 		
 		// Page<TbCost> page = (Page <TbCost>) studentList;

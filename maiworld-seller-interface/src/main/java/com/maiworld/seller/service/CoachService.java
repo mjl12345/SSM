@@ -2,6 +2,8 @@ package com.maiworld.seller.service;
 
 import java.util.List;
 
+import com.maiworld.api.dto.CoachDTO;
+import com.maiworld.api.vo.ResultVO;
 import com.maiworld.pojo.TbCoach;
 
 import entity.PageResult;
@@ -30,4 +32,11 @@ public interface CoachService {
 	 * @param authentication
 	 */
 	public void updateAuthentication(Long cid , String authentication);
+	
+	/**
+	 * 查询教练详情
+	 * @param openid
+	 * @return
+	 */
+	public ResultVO<CoachDTO> findOne(String openid);
 }

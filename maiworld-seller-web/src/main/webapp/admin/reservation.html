@@ -24,7 +24,8 @@
 	<!--分页结束  -->
     
     <script type="text/javascript" src="../js/base_pagination.js"></script>    
-    <script type="text/javascript" src="../js/service/reservationSevice.js"></script>        
+    <script type="text/javascript" src="../js/service/reservationSevice.js"></script>
+    <!-- <script type="text/javascript" src="../js/controller/baseController.js"></script> -->        
     <script type="text/javascript" src="../js/controller/reservationController.js"></script>
     
     
@@ -45,8 +46,8 @@
                             
                             <div class="box-tools pull-right">
                                 <div class="has-feedback">
-									<!-- 真实姓名：<input ng-model="searchEntity.name" >									
-									<button class="btn btn-default"  ng-click="reloadList()">查询</button>   -->                                  
+									学员姓名：<input ng-model="searchEntity.sname" >									
+									<button class="btn btn-default"  ng-click="reloadList()">查询</button>                                    
                                 </div>
                             </div>
                             <!--工具栏/-->
@@ -60,12 +61,12 @@
 			                              </th> 
 										  <th class="sorting_asc">ID</th>
 									      <th class="sorting">学员姓名</th>
-									      <th class="sorting">性别</th>
-									      <th class="soring">学习状态</th>
+									      <th class="sorting">性别</th>									      
 									      <th class="sorting">学员身份</th>									      
 									      <th class="soring">科目类型</th>
 									      <th class="sorting">所属校区</th>
-									      <th class="soring">预约教练姓名</th>									      
+									      <th class="soring">预约教练姓名</th>
+									      <th class="soring">培训车型</th>									      
 										  <th class="sorting">签到状态</th>
 									      <th class="sorting">预约时间</th> 													                     
 			                          </tr>
@@ -74,17 +75,20 @@
 			                          <tr ng-repeat="entity in list track by $index">			                          	
 			                              <td><input  type="checkbox"></td>			                              
 				                          <td>{{entity.id}}</td>
-									      <td>{{entity.name}}</td>									     								      
+									      <td>{{entity.sname}}</td>									     								      
 									      <td>
-										      <span ng-show="entity.sex =='0'">男</span>
-										      <span ng-show="entity.sex =='1'">女</span>										      
-									      </td>	
-									      <td>{{entity.points}}</td>								     
+										      <span ng-show="entity.sex1 =='0'">男</span>
+										      <span ng-show="entity.sex1 =='1'">女</span>										      
+									      </td>										      							     
 									      <td>
-										      <span ng-show="entity.is_vip =='0'">普通</span>
-										      <span ng-show="entity.is_vip =='1'">VIP</span>
-									      </td> 									       
-									      <td> 
+										      <span ng-show="entity.isVip =='0'">普通</span>
+										      <span ng-show="entity.isVip =='1'">VIP</span>
+									      </td> 
+									      <td>
+										      <span ng-show="entity.subject =='0'">科目二</span>
+										      <span ng-show="entity.subject =='1'">科目三</span>
+									      </td>											       
+									      <!-- <td> 
 									      	<span ng-show="entity.study_status == '0'">未报名</span>
 									      	<span ng-show="entity.study_status == '1'">科一</span>
 									      	<span ng-show="entity.study_status == '2'">科二</span>
@@ -92,41 +96,55 @@
 									      	<span ng-show="entity.study_status == '4'">科四</span>
 									      	<span ng-show="entity.study_status == '5'">领证</span>
 									      	<span ng-show="entity.study_status == '6'">无限制</span>
-									      </td>
+									      </td> -->
 									      <td>
-									      	<span ng-show="entity.status == '1'">一分校</span>	
-		                                  	<span ng-show="entity.status == '2'">二分校</span>	
-		                                  	<span ng-show="entity.status == '3'">三分校</span>	
-		                                  	<span ng-show="entity.status == '4'">四分校</span>	
-		                                  	<span ng-show="entity.status == '5'">五分校</span>	
-		                                  	<span ng-show="entity.status == '6'">六分校</span>	
-		                                  	<span ng-show="entity.status == '7'">七分校</span>	
-		                                  	<span ng-show="entity.status == '8'">八分校</span>	
-		                                  	<span ng-show="entity.status == '9'">九分校</span>	
-		                                  	<span ng-show="entity.status == '10'">十分校</span>	
-		                                  	<span ng-show="entity.status == '11'">十一分校</span>	
-		                                  	<span ng-show="entity.status == '12'">十二分校</span>	
-		                                  	<span ng-show="entity.status == '13'">十三分校</span>	
-		                                  	<span ng-show="entity.status == '14'">十四分校</span>
-		                                  	<span ng-show="entity.status == '15'">十五分校</span>
-		                                  	<span ng-show="entity.status == '16'">十六分校</span>
-		                                  	<span ng-show="entity.status == '17'">十七分校</span>
-		                                  	<span ng-show="entity.status == '18'">十八分校</span>
-		                                  	<span ng-show="entity.status == '19'">十九分校</span>
-		                                  	<span ng-show="entity.status == '20'">二十分校</span>
-		                                  	<span ng-show="entity.status == '21'">二十一分校</span>
-		                                  	<span ng-show="entity.status == '22'">二十二分校</span>
-		                                  	<span ng-show="entity.status == '23'">二十三分校</span>
-		                                  	<span ng-show="entity.status == '24'">二十四分校</span>
-		                                  	<span ng-show="entity.status == '25'">二十五分校</span>
-		                                  	<span ng-show="entity.status == '26'">二十六分校</span>
-		                                  	<span ng-show="entity.status == '27'">二十七分校</span>
-		                                  	<span ng-show="entity.status == '28'">二十八分校</span>
-		                                  	<span ng-show="entity.status == '29'">二十九分校</span>
-		                                  	<span ng-show="entity.status == '30'">三十分校</span>	
+									      	<span ng-show="entity.status1 == '1'">一分校</span>	
+		                                  	<span ng-show="entity.status1 == '2'">二分校</span>	
+		                                  	<span ng-show="entity.status1 == '3'">三分校</span>	
+		                                  	<span ng-show="entity.status1 == '4'">四分校</span>	
+		                                  	<span ng-show="entity.status1 == '5'">五分校</span>	
+		                                  	<span ng-show="entity.status1 == '6'">六分校</span>	
+		                                  	<span ng-show="entity.status1 == '7'">七分校</span>	
+		                                  	<span ng-show="entity.status1 == '8'">八分校</span>	
+		                                  	<span ng-show="entity.status1 == '9'">九分校</span>	
+		                                  	<span ng-show="entity.status1 == '10'">十分校</span>	
+		                                  	<span ng-show="entity.status1 == '11'">十一分校</span>	
+		                                  	<span ng-show="entity.status1 == '12'">十二分校</span>	
+		                                  	<span ng-show="entity.status1 == '13'">十三分校</span>	
+		                                  	<span ng-show="entity.status1 == '14'">十四分校</span>
+		                                  	<span ng-show="entity.status1 == '15'">十五分校</span>
+		                                  	<span ng-show="entity.status1 == '16'">十六分校</span>
+		                                  	<span ng-show="entity.status1 == '17'">十七分校</span>
+		                                  	<span ng-show="entity.status1 == '18'">十八分校</span>
+		                                  	<span ng-show="entity.status1 == '19'">十九分校</span>
+		                                  	<span ng-show="entity.status1 == '20'">二十分校</span>
+		                                  	<span ng-show="entity.status1 == '21'">二十一分校</span>
+		                                  	<span ng-show="entity.status1 == '22'">二十二分校</span>
+		                                  	<span ng-show="entity.status1 == '23'">二十三分校</span>
+		                                  	<span ng-show="entity.status1 == '24'">二十四分校</span>
+		                                  	<span ng-show="entity.status1 == '25'">二十五分校</span>
+		                                  	<span ng-show="entity.status1 == '26'">二十六分校</span>
+		                                  	<span ng-show="entity.status1 == '27'">二十七分校</span>
+		                                  	<span ng-show="entity.status1 == '28'">二十八分校</span>
+		                                  	<span ng-show="entity.status1 == '29'">二十九分校</span>
+		                                  	<span ng-show="entity.status1 == '30'">三十分校</span>	
 		                                  	</td>
-									      <td>{{entity.created}}</td>
-									      <td>{{entity.checkStatus}}</td>							    								      									    		                                  		                              
+									      <td>{{entity.cname}}</td>
+									      <td>
+									      		<span ng-show="entity.vehicleType =='1'">C1</span>
+									      		<span ng-show="entity.vehicleType =='2'">C2</span>
+									      		<span ng-show="entity.vehicleType =='3'">B1</span>
+									      		<span ng-show="entity.vehicleType =='4'">B2</span>
+									      		<span ng-show="entity.vehicleType =='5'">A1</span>
+									      		<span ng-show="entity.vehicleType =='6'">A3</span>								     									      
+									      </td>
+									      <td> 
+									      	<span ng-show="entity.checkStatus == '0'">未到</span>
+									      	<span ng-show="entity.checkStatus == '1'">已到</span>
+									      	<span ng-show="entity.checkStatus == '2'">已完成</span>
+									      	<span ng-show="entity.checkStatus == '3'">已评价</span>									      	
+									      </td>
+									      <td>{{entity.period}}</td>							    								      									    		                                  		                              
 			                          </tr>
 									  
 			                      </tbody>
